@@ -2,8 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: reggie                                             #Ó¦ÓÃÃû
-
+    name: reggie                                             #åº”ç”¨åç§°
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,4 +12,6 @@ spring:
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true                        #½«Êı¾İ¿âÖĞ±íÃûºÍ×Ö¶ÎÃûÖĞµÄÏÂ»®ÏßÈ¥µô£¬°´ÕÕÍÕ·åÃüÃû·¨Ó³ÉäÊµÌå»òÊôĞÔ
+    map-underscore-to-camel-case: true                        #å¼€å¯é©¼å³°æ˜ å°„
+reggie:
+  path: D:\\upload\\

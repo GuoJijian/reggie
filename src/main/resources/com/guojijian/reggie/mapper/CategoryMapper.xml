@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guojijian.reggie.mapper.CategoryMapper">
+    <resultMap id="baseResultMap" type="com.guojijian.reggie.pojo.Category">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+        <result column="update_user" property="createUser" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <!--List<Category> selectCategoryForPage();-->
+    <select id="selectCategoryForPage" resultMap="baseResultMap">
+        SELECT id,type,name,sort,create_time,update_time,create_user,update_user
+        FROM category
+    </select>
+
+    <!--int insertCategory(Category category);-->
+    <insert id="insertCategory">
+        INSERT INTO category(type,name,sort,create_time,update_time,create_user,update_user)
+        VALUES(#{type},#{name},#{sort},#{createTime},#{updateTime},#{createUser},#{updateUser})
+    </insert>
+
+    <!--int updateCategory(Category category);-->
+    <update id="updateCategory">
+        UPDATE category
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="sort!=null">
+                sort=#{sort},
+            </if>
+            update_time=#{updateTime},update_user=#{updateUser}
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--int deleteCategory(Long ids);-->
+    <delete id="deleteCategory">
+        DELETE FROM category WHERE id=#{ids}
+    </delete>
+
+    <!--Category selectCategoryById(Long id);-->
+    <select id="selectCategoryById" resultMap="baseResultMap">
+        SELECT id,type,name,sort,create_time,update_time,create_user,update_user
+        FROM category
+        WHERE id=#{id}
+    </select>
+
+    <!--List<Category> selectCategoryByType(Long type);-->
+    <select id="selectCategoryByType" resultMap="baseResultMap">
+        SELECT id,type,name,sort,create_time,update_time,create_user,update_user
+        FROM category
+        WHERE type=#{type}
+    </select>
+</mapper>

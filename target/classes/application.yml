@@ -2,8 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: reggie                                             #Ӧ����
-
+    name: reggie                                             #应用名称
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,4 +12,6 @@ spring:
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true                        #�����ݿ��б������ֶ����е��»���ȥ���������շ�������ӳ��ʵ�������
+    map-underscore-to-camel-case: true                        #开启驼峰映射
+reggie:
+  path: D:\\upload\\
