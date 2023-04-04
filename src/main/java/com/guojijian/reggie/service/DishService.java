@@ -1,5 +1,6 @@
 package com.guojijian.reggie.service;
 
+import com.guojijian.reggie.dto.DishDto;
 import com.guojijian.reggie.pojo.Dish;
 
 import java.util.List;
@@ -10,5 +11,11 @@ public interface DishService {
 
     List<Dish> queryDishForPageByCondition(Map<String,Object> map);
 
-    Dish createDish(Dish dish);
+    void createDish(DishDto dishDto);
+
+    Dish queryDishById(Long id);
+
+    void alterDish(Dish dish);
+
+    void alterDishStatusForBatchByIds(Map<String,Object> map);
 }

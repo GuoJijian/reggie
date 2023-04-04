@@ -70,11 +70,6 @@ public class CommonController {
             e.printStackTrace();
         }finally {
             try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();

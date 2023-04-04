@@ -15,5 +15,14 @@ public interface DishMapper {
     List<Dish> selectDishForPageByCondition(Map<String,Object> map);
 
     //添加菜品
-    Dish insertDish(Dish dish);
+    int insertDish(Dish dish);
+
+    //根据id查询菜品
+    Dish selectDishById(Long id);
+
+    //根据id修改菜品信息
+    int updateDish(Dish dish);
+
+    //根据ids批量修改菜品状态
+    int updateDishStatusForBatchByIds(Map<String,Object> map);
 }
