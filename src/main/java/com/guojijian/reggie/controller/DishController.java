@@ -114,4 +114,9 @@ public class DishController {
 
         return R.success("菜品停售成功！");
     }
+
+    @GetMapping("/list")
+    public R getList(Dish dish){
+        return R.success(dishService.queryDishByCategoryId(dish.getCategoryId()));
+    }
 }

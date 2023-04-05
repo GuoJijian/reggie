@@ -9,7 +9,7 @@ import java.util.Map;
 @Repository
 public interface DishMapper {
     //根据分类id查询菜品
-    int selectDishByCategoryId(Long categoryId);
+    List<Dish> selectDishByCategoryId(Long categoryId);
 
     //根据条件分页查询
     List<Dish> selectDishForPageByCondition(Map<String,Object> map);
@@ -25,4 +25,5 @@ public interface DishMapper {
 
     //根据ids批量修改菜品状态
     int updateDishStatusForBatchByIds(Map<String,Object> map);
+
 }

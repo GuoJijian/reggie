@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guojijian.reggie.mapper.SetmealDishMapper">
+    <resultMap id="baseResultMap" type="com.guojijian.reggie.pojo.SetmealDish">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="setmeal_id" property="setmealId" jdbcType="VARCHAR"/>
+        <result column="dish_id" property="dishId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="copies" property="copies" jdbcType="INTEGER"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+        <result column="update_user" property="createUser" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <!--int insertSetmealDishBatch(List<SetmealDish> setmealDishes);-->
+    <insert id="insertSetmealDishBatch">
+        INSERT INTO setmeal_dish(setmeal_id,dish_id,name,price,copies,create_time,update_time,create_user,update_user)
+        VALUES
+        <foreach collection="list" item="setmealDish" separator=",">
+            (#{setmealDish.setmealId},#{setmealDish.dishId},#{setmealDish.name},#{setmealDish.price},#{setmealDish.copies},
+            #{setmealDish.createTime},#{setmealDish.updateTime},#{setmealDish.createUser},#{setmealDish.updateUser})
+        </foreach>
+    </insert>
+
+    <!--List<SetmealDish> selectSetmealDishBySetmealId(String setmealId);-->
+    <select id="selectSetmealDishBySetmealId" resultMap="baseResultMap">
+        SELECT id,setmeal_id,dish_id,name,price,copies,sort,create_time,update_time,create_user,update_user
+        FROM setmeal_dish
+        WHERE setmeal_id=#{setmealId}
+    </select>
+
+    <!--int deleteSetmealDishBatchBySetmealId(List<String> setmealId);-->
+    <delete id="deleteSetmealDishBatchBySetmealId">
+        DELETE FROM setmeal_dish WHERE setmeal_id in
+        <foreach collection="list" item="setmealId" separator="," open="(" close=")">
+            #{setmealId}
+        </foreach>
+    </delete>
+</mapper>

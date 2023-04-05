@@ -24,4 +24,58 @@
         FROM setmeal
         WHERE category_id=#{categoryId}
     </select>
+
+    <!--int insertSetmeal(Setmeal setmeal);-->
+    <insert id="insertSetmeal" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO setmeal(category_id,name,price,status,description,image,create_time,update_time,create_user,update_user)
+        VALUES(#{categoryId},#{name},#{price},#{status},#{description},#{image},#{createTime},#{updateTime},#{createUser},
+        #{updateUser})
+    </insert>
+
+    <!--List<Setmeal> selectSetmealForPageByCondition(Map<String,Object> map);-->
+    <select id="selectSetmealForPageByCondition" resultMap="baseResultMap">
+        SELECT id,category_id,name,price,status,code,description,image,create_time,create_user,update_time,update_user
+        FROM setmeal
+        <where>
+            <if test="name!=null">
+                name LIKE '%' #{name} '%'
+            </if>
+        </where>
+    </select>
+
+    <!--Setmeal selectSetmealById(Long id);-->
+    <select id="selectSetmealById" resultMap="baseResultMap">
+        SELECT id,category_id,name,price,status,code,description,image,create_time,create_user,update_time,update_user
+        FROM setmeal
+        WHERE id=#{id}
+    </select>
+
+    <!--int selectSetmealForSoldByIds(List<Long> ids);-->
+    <select id="selectSetmealForSoldByIds" resultType="INT">
+        SELECT COUNT(*)
+        FROM setmeal
+        WHERE id in
+        <foreach collection="list" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+        AND status=1
+    </select>
+
+    <!--int deleteSetmealBatchByIds(List<Long> ids);-->
+    <delete id="deleteSetmealBatchByIds">
+        DELETE FROM setmeal where id in
+        <foreach collection="list" separator="," item="id" open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--int updateSetmealStatus(Map<String,Object> map);-->
+    <update id="updateSetmealStatus">
+        UPDATE setmeal
+        SET status=#{status},update_time=#{updateTime},update_user=#{updateUser}
+        WHERE id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

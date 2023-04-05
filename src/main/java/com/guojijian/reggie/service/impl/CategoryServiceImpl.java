@@ -6,6 +6,7 @@ import com.guojijian.reggie.commons.exception.DeleteException;
 import com.guojijian.reggie.commons.exception.UpdateException;
 import com.guojijian.reggie.mapper.CategoryMapper;
 import com.guojijian.reggie.pojo.Category;
+import com.guojijian.reggie.pojo.Dish;
 import com.guojijian.reggie.service.CategoryService;
 import com.guojijian.reggie.service.DishService;
 import com.guojijian.reggie.service.SetmealService;
@@ -50,7 +51,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void dropCategory(Long ids) throws DeleteException {
-        if(dishService.queryDishByCategoryId(ids)>0){
+        List<Dish> dishList = dishService.queryDishByCategoryId(ids);
+
+        if(dishList.size()>0){
             throw new DeleteException("根据ids删除分类信息失败，存在关联的菜品");
         }
 

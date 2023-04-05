@@ -26,7 +26,7 @@ public class DishServiceImpl implements DishService {
     private DishFlavorService dishFlavorService;
 
     @Override
-    public int queryDishByCategoryId(Long categoryId) {
+    public List<Dish> queryDishByCategoryId(Long categoryId) {
         return dishMapper.selectDishByCategoryId(categoryId);
     }
 

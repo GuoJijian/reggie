@@ -19,9 +19,9 @@
         <result column="update_user" property="createUser" jdbcType="BIGINT"/>
     </resultMap>
 
-    <!--int selectDishByCategoryId(Long categoryId);-->
-    <select id="selectDishByCategoryId" resultType="INTEGER">
-        SELECT COUNT(*)
+    <!--List<Dish> selectDishByCategoryId(Long categoryId);-->
+    <select id="selectDishByCategoryId" resultMap="baseResultMap">
+        SELECT id,name,category_id,price,status,code,description,image,sort,create_time,update_time,create_user,update_user
         FROM dish
         WHERE category_id=#{categoryId}
     </select>

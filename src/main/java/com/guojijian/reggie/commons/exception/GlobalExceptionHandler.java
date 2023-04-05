@@ -43,4 +43,11 @@ public class GlobalExceptionHandler {
 
         return R.error("操作失败！");
     }
+
+    @ExceptionHandler({MesException.class})
+    public R messageExceptionHandle(MesException e){
+        log.error(e.getMessage());
+
+        return R.error(e.getMessage());
+    }
 }

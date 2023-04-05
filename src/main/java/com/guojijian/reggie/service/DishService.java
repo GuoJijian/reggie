@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DishService {
-    int queryDishByCategoryId(Long categoryId);
+    List<Dish> queryDishByCategoryId(Long categoryId);
 
     List<Dish> queryDishForPageByCondition(Map<String,Object> map);
 
